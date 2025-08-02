@@ -24,19 +24,14 @@ const __dirname = path.resolve();
 
 // --- Middlewares ---
 // Enable Cross-Origin Resource Sharing (CORS)
-const allowedOrigins = ['http://localhost:5173'];
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-  optionsSuccessStatus: 200
-};
-app.use(cors(corsOptions));
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
+
 // Parse JSON bodies
 app.use(express.json());
 // Parse URL-encoded bodies
